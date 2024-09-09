@@ -1,5 +1,6 @@
 package destiny.fearthelight.common;
 
+import destiny.fearthelight.FeartheLight;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.level.Level;
@@ -9,6 +10,10 @@ import net.minecraft.world.level.storage.DimensionDataStorage;
 import javax.annotation.Nonnull;
 
 public class ModSavedData extends SavedData {
+    private static final String FILE_NAME = FeartheLight.MODID + "-daybreak";
+    private static final String VERSION = "Version";
+
+    private static final String CONNECTIONS = "Connections";
     private MinecraftServer server;
     public ModSavedData(MinecraftServer server)
     {
@@ -53,5 +58,21 @@ public class ModSavedData extends SavedData {
 
         return storage.computeIfAbsent((tag) -> load(server, tag), () -> create(server), FILE_NAME);
     }
+
+    private final void deserialize(CompoundTag tag)
+    {
+        this.version = tag.getInt(VERSION);
+        deserializeConnections(tag.getCompound(CONNECTIONS));
+    }
+
+    private final CompoundTag serialize()
+    {
+        CompoundTag tag = new CompoundTag();
+
+        tag.putInt(VERSION, this.version);
+        tag.put(CONNECTIONS, serializeConnections());
+
+        return tag;
+    }
 }
-}
+
