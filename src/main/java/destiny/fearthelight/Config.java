@@ -10,27 +10,32 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = FeartheLight.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Config
 {
+    public enum DaybreakModes
+    {
+        CHANCE,
+        COUNTDOWN
+    }
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
-    private static final ForgeConfigSpec.ConfigValue<List<? extends String>> DAYBREAK_MODE = BUILDER
+    private static final ForgeConfigSpec.EnumValue<DaybreakModes> DAYBREAK_MODE = BUILDER
             .comment("The mode of Daybreak event")
-            .defineList("dayBreakMode", List.of("CHANCE", "COUNTDOWN"));
+            .defineEnum("daybreak_Mode", DaybreakModes.CHANCE);
 
     private static final ForgeConfigSpec.DoubleValue DAYBREAK_STARTING_CHANCE = BUILDER
             .comment("Starting chance of the Daybreak happening")
-            .defineInRange("dayBreakStartingChance", 0.1,0, 1);
+            .defineInRange("daybreak_starting_chance", 0.1,0, 1);
 
     private static final ForgeConfigSpec.DoubleValue DAYBREAK_ADDITIVE_CHANCE = BUILDER
             .comment("Number added to chance of Daybreak each passing day")
-            .defineInRange("dayBreakAdditiveChance", 0.1,0, 1);
+            .defineInRange("daybreak_additive_chance", 0.1,0, 1);
 
     private static final ForgeConfigSpec.IntValue DAYBREAK_TIMER = BUILDER
             .comment("Time in ticks until Daybreak begins")
-            .defineInRange("dayBreakTimer", 24000,0, Integer.MAX_VALUE);
+            .defineInRange("daybreak_timer", 24000,0, Integer.MAX_VALUE);
 
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
-    public static List<? extends String> dayBreakMode;
+    public static Enum<DaybreakModes> dayBreakMode;
     public static double dayBreakStartingChance;
     public static double dayBreakAdditiveChance;
     public static double dayBreakTimer;
