@@ -35,7 +35,7 @@ public class Config
 
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
-    public static Enum<DaybreakModes> dayBreakMode;
+    public static DaybreakModes dayBreakMode;
     public static double dayBreakStartingChance;
     public static double dayBreakAdditiveChance;
     public static int dayBreakTimer;

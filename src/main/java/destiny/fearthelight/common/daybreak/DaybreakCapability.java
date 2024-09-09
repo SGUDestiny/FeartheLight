@@ -17,23 +17,28 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
     public int daybreakTimer = 0;
     public int previousDay = 0;
 
-    DaybreakCapability()
-    {
-    }
-
-    public void tick(Level level)
-    {
-        if(!level.isClientSide() || level.getServer() == null)
+    public void tick(Level level){
+        if(level.isClientSide() || level.getServer() == null){
             return;
+        }
 
-        onFirstLoad(level);
-        onFirstLaunch();
+        onLoad(level);
 
-        daybreakChanceCalc(level);
+        if (Config.dayBreakMode == Config.DaybreakModes.CHANCE){
+            daybreakChanceCalc(level);
+        } else {
+            daybreakCountdown();
+        }
 
     }
 
-    public void onFirstLaunch(){
+    public void onLoad(Level level){
+        int previousDay = getPreviousDay();
+
+        if(previousDay == 0){
+            setPreviousDay(getCurrentDay(level));
+        }
+
         if (getDaybreakMode() == null) {
             setDaybreakMode(Config.dayBreakMode.toString());
             setDaybreakChance(Config.dayBreakStartingChance);
@@ -41,27 +46,28 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
         }
     }
 
-    public void onFirstLoad(Level level){
-        int previousDay = getPreviousDay();
-
-        if(previousDay == 0){
-            setPreviousDay(getCurrentDay(level));
-        }
-    }
 
     public void daybreakChanceCalc(Level level){
         double additive = Config.dayBreakAdditiveChance;
         int currentDay = getCurrentDay(level);
         double chance = getDaybreakChance();
 
-        if (currentDay == 1){
-            setDaybreakChance(chance);
+        setDaybreakChance(chance + (additive * (currentDay - 1)));
+
+        //Do RNG for daybreak here soon
+    }
+
+    public void daybreakCountdown(){
+        int timer = getDaybreakTimer();
+
+        if(timer > 0){
+            setDaybreakTimer(timer - 1);
         } else {
-            setDaybreakChance(chance + (additive * 1));
+            //Trigger Daybreak here
         }
     }
 
-    public void daybreakTriggerCalc(Level level){
+    public void daybreakTrigger(Level level){
 
     }
 
@@ -78,20 +84,16 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
         return previousDay;
     }
 
-    public void setDaybreakMode(String daybreakMode)
-    {
+    public void setDaybreakMode(String daybreakMode){
         this.daybreakMode = daybreakMode;
     }
-    public void setDaybreakChance(double daybreakChance)
-    {
+    public void setDaybreakChance(double daybreakChance){
         this.daybreakChance = daybreakChance;
     }
-    public void setDaybreakTimer(int daybreakTimer)
-    {
+    public void setDaybreakTimer(int daybreakTimer){
         this.daybreakTimer = daybreakTimer;
     }
-    public void setPreviousDay(int previousDay)
-    {
+    public void setPreviousDay(int previousDay){
         this.previousDay = previousDay;
     }
 
@@ -110,8 +112,7 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
     }
 
     @Override
-    public void deserializeNBT(CompoundTag tag)
-    {
+    public void deserializeNBT(CompoundTag tag){
         this.daybreakMode = tag.getString(DAYBREAK_MODE);
         this.daybreakChance = tag.getDouble(DAYBREAK_CHANCE);
         this.daybreakTimer = tag.getInt(DAYBREAK_TIMER);
