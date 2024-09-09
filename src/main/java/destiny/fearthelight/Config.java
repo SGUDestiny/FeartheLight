@@ -19,7 +19,7 @@ public class Config
 
     private static final ForgeConfigSpec.EnumValue<DaybreakModes> DAYBREAK_MODE = BUILDER
             .comment("The mode of Daybreak event")
-            .defineEnum("daybreak_Mode", DaybreakModes.CHANCE);
+            .defineEnum("daybreak_mode", DaybreakModes.CHANCE);
 
     private static final ForgeConfigSpec.DoubleValue DAYBREAK_STARTING_CHANCE = BUILDER
             .comment("Starting chance of the Daybreak happening")
