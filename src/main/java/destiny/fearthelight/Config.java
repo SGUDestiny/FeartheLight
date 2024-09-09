@@ -38,7 +38,7 @@ public class Config
     public static Enum<DaybreakModes> dayBreakMode;
     public static double dayBreakStartingChance;
     public static double dayBreakAdditiveChance;
-    public static double dayBreakTimer;
+    public static int dayBreakTimer;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
