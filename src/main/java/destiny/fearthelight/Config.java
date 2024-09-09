@@ -33,19 +33,25 @@ public class Config
             .comment("Time in ticks until Daybreak begins")
             .defineInRange("daybreak_timer", 24000,0, Integer.MAX_VALUE);
 
+    private static final ForgeConfigSpec.IntValue DAYBREAK_LENGTH_MULTIPLIER = BUILDER
+            .comment("Numeric multiplier of how long Daybreak lasts for")
+            .defineInRange("daybreak_length_multiplier", 5,1, Integer.MAX_VALUE);
+
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
-    public static DaybreakModes dayBreakMode;
-    public static double dayBreakStartingChance;
-    public static double dayBreakAdditiveChance;
-    public static int dayBreakTimer;
+    public static DaybreakModes daybreakMode;
+    public static double daybreakStartingChance;
+    public static double daybreakAdditiveChance;
+    public static int daybreakTimer;
+    public static int daybreakLengthMultiplier;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
     {
-        dayBreakMode = DAYBREAK_MODE.get();
-        dayBreakStartingChance = DAYBREAK_STARTING_CHANCE.get();
-        dayBreakAdditiveChance = DAYBREAK_ADDITIVE_CHANCE.get();
-        dayBreakTimer = DAYBREAK_TIMER.get();
+        daybreakMode = DAYBREAK_MODE.get();
+        daybreakStartingChance = DAYBREAK_STARTING_CHANCE.get();
+        daybreakAdditiveChance = DAYBREAK_ADDITIVE_CHANCE.get();
+        daybreakTimer = DAYBREAK_TIMER.get();
+        daybreakLengthMultiplier = DAYBREAK_LENGTH_MULTIPLIER.get();
     }
 }

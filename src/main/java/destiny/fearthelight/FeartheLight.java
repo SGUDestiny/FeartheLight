@@ -1,6 +1,7 @@
 package destiny.fearthelight;
 
 import com.mojang.logging.LogUtils;
+import destiny.fearthelight.common.daybreak.DaybreakOverworldEffects;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.food.FoodProperties;
@@ -13,6 +14,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RegisterDimensionSpecialEffectsEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -59,18 +61,15 @@ public class FeartheLight
         LOGGER.info("HELLO FROM COMMON SETUP");
     }
 
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event)
-    {
-        // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
-    }
-
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
+        @SubscribeEvent
+        public static void registerDimensionEffects(RegisterDimensionSpecialEffectsEvent event)
+        {
+            //event.register(DaybreakOverworldEffects.OVERWORLD_EFFECTS, new DaybreakOverworldEffects());
+        }
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
