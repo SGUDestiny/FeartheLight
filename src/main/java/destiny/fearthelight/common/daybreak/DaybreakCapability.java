@@ -74,9 +74,9 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
     }
 
     public void daybreakTrigger(Level level) {
-        int length_multiplier = Config.daybreakLengthMultiplier;
+        int lengthMultiplier = Config.daybreakLengthMultiplier;
 
-        setDaybreakDaysLeft((int) (length_multiplier * level.random.nextDouble()));
+        setDaybreakDaysLeft((int) (lengthMultiplier * level.random.nextDouble()));
     }
 
     public String getDaybreakMode() {
