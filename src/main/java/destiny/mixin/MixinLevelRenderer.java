@@ -20,7 +20,7 @@ abstract class MixinLevelRenderer {
             )
     )
     void setSunTexture(int i, ResourceLocation sunTexture, Operation<Void> original) {
-        if ()
+        //if ()
         original.call(i, sunTexture);
     }
 }

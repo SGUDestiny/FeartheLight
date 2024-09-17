@@ -34,10 +34,8 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
     }
 
     public void onLoad(Level level) {
-        int previousDay = getPreviousDay();
-
         if(previousDay == 0) {
-            setPreviousDay(getCurrentDay(level));
+            previousDay = getCurrentDay(level);
         }
 
         if (getDaybreakMode() == null) {
@@ -55,11 +53,11 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
 
         setDaybreakChance(chance + (additive * (currentDay - 1)));
 
-        if(currentDay > getPreviousDay()) {
+        if(currentDay > previousDay) {
             if(getDaybreakChance() > level.random.nextDouble() || getDaybreakChance() >= 1) {
                 daybreakTrigger(level);
             }
-            setPreviousDay(currentDay);
+            previousDay = currentDay;
         }
     }
 
@@ -91,9 +89,6 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
     public int getDaybreakDaysLeft() {
         return daybreakDaysLeft;
     }
-    public int getPreviousDay() {
-        return previousDay;
-    }
 
     public void setDaybreakMode(String daybreakMode) {
         this.daybreakMode = daybreakMode;
@@ -107,9 +102,6 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
     public void setDaybreakDaysLeft(int daybreakDaysLeft) {
         this.daybreakDaysLeft = daybreakDaysLeft;
     }
-    public void setPreviousDay(int previousDay) {
-        this.previousDay = previousDay;
-    }
 
     public int getCurrentDay(Level level) {
         return (int) level.getDayTime() / 24000;
@@ -121,6 +113,11 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
         tag.putString(DAYBREAK_MODE, daybreakMode);
         tag.putDouble(DAYBREAK_CHANCE, daybreakChance);
         tag.putInt(DAYBREAK_TIMER, daybreakTimer);
+
+        System.out.println("=================");
+        System.out.println(daybreakMode);
+        System.out.println(daybreakChance);
+        System.out.println(daybreakTimer);
 
         return tag;
     }
