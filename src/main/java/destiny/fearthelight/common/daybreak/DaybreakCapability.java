@@ -113,11 +113,13 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
         tag.putString(DAYBREAK_MODE, daybreakMode);
         tag.putDouble(DAYBREAK_CHANCE, daybreakChance);
         tag.putInt(DAYBREAK_TIMER, daybreakTimer);
+        tag.putInt(DAYBREAK_DAYS_LEFT, daybreakDaysLeft);
 
         System.out.println("=================");
         System.out.println(daybreakMode);
         System.out.println(daybreakChance);
         System.out.println(daybreakTimer);
+        System.out.println(daybreakDaysLeft);
 
         return tag;
     }
@@ -127,5 +129,6 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
         this.daybreakMode = tag.getString(DAYBREAK_MODE);
         this.daybreakChance = tag.getDouble(DAYBREAK_CHANCE);
         this.daybreakTimer = tag.getInt(DAYBREAK_TIMER);
+        this.daybreakDaysLeft = tag.getInt(DAYBREAK_DAYS_LEFT);
     }
 }
