@@ -107,6 +107,7 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
         return (int) level.getDayTime() / 24000;
     }
 
+    @Override
     public CompoundTag serializeNBT() {
         CompoundTag tag = new CompoundTag();
 
