@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 public class Events {
     @SubscribeEvent
     public static void attachCapabilities(AttachCapabilitiesEvent<Level> event) {
-        if (event.getObject() instanceof ServerLevel && event.getObject().dimensionTypeId().equals(new ResourceLocation("overworld"))) {
+        if (event.getObject() instanceof ServerLevel && event.getObject().dimensionTypeId().location().equals(new ResourceLocation("overworld"))) {
             event.addCapability(new ResourceLocation(FeartheLight.MODID, "daybreak"), new GenericProvider<>(ModCapabilities.DAYBREAK, new DaybreakCapability()));
         }
     }

@@ -86,7 +86,7 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
     }
 
     public int getCurrentDay(Level level) {
-        return (int) (level.getDayTime() / 24000 % 2147483647L);
+        return (int) (level.getDayTime() / 18000 % 2147483647L);
     }
 
     @Override

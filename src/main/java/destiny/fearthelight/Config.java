@@ -35,7 +35,7 @@ public class Config
 
     private static final ForgeConfigSpec.IntValue DAYBREAK_LENGTH_MULTIPLIER = BUILDER
             .comment("Numeric multiplier of how long Daybreak lasts for")
-            .defineInRange("daybreak_length_multiplier", 5,1, Integer.MAX_VALUE);
+            .defineInRange("daybreak_length_multiplier", 10,1, Integer.MAX_VALUE);
 
     static final ForgeConfigSpec SPEC = BUILDER.build();
 
