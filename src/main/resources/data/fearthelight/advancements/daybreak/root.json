@@ -1,0 +1,38 @@
+{
+  "display":
+  {
+    "icon":
+    {
+      "item": "minecraft:coarse_dirt"
+    },
+    "title":
+    {
+      "translate": "advancements.fearthelight.daybreak.daybreak_start.title"
+    },
+    "description":
+    {
+      "translate": "advancements.fearthelight.daybreak.daybreak_start.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "minecraft:textures/blocks/coarse_dirt.png"
+  },
+  "criteria":
+  {
+    "daybreak_start":
+    {
+      "trigger": "fearthelight:daybreaK_start",
+      "conditions": {
+        "dimension": "minecraft:overworld"
+      }
+    }
+  },
+  "requirements":
+  [
+    [
+      "daybreak_start"
+    ]
+  ]
+}

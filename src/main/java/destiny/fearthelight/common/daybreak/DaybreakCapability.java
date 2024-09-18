@@ -1,7 +1,9 @@
 package destiny.fearthelight.common.daybreak;
 
 import destiny.fearthelight.Config;
+import destiny.fearthelight.common.advancements.DaybreakStartCriterion;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.INBTSerializable;
 
@@ -83,6 +85,8 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
 
         daybreakDaysLeft = (int) (lengthMultiplier * level.random.nextDouble());
         isDayBroken = true;
+
+        DaybreakStartCriterion.INSTANCE.trigger(level.getServer(), new ResourceLocation("minecraft:overworld"));
     }
 
     public int getCurrentDay(Level level) {
