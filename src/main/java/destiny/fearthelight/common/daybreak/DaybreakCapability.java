@@ -22,7 +22,7 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
     public boolean isDayBroken = false;
 
     public void tick(Level level) {
-        if(level.isClientSide() || level.getServer() == null || !level.dimensionTypeId().location().equals(new ResourceLocation("overworld"))) {
+        if(level.isClientSide() || level.getServer() == null) {
             return;
         }
 
