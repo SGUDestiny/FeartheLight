@@ -30,8 +30,12 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
     }
 
     public void onLoad(Level level) {
-        if(previousDay == -1) {
+        if (previousDay == -1) {
             previousDay = getCurrentDay(level);
+        }
+
+        if (daybreakTimer == 0) {
+            daybreakTimer = Config.daybreakTimer;
         }
     }
 
