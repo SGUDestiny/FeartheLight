@@ -23,10 +23,10 @@ public class Events {
             event.addCapability(new ResourceLocation(FeartheLight.MODID, "daybreak"), new GenericProvider<>(ModCapabilities.DAYBREAK, new DaybreakCapability()));
         }
     }
-//
-//    @SubscribeEvent
-//    public static void levelTick(TickEvent.ServerTickEvent event) {
-//        if(event.phase == TickEvent.Phase.END && event.side.isServer() && event.getServer() instanceof Level level)
-//            event..getCapability(CapabilitiesInit.DIVING).ifPresent(cap -> cap.tick(event.player.level(), player));
-//    }
+
+    @SubscribeEvent
+    public static void levelTick(TickEvent.LevelTickEvent event) {
+        if(event.phase == TickEvent.Phase.END && event.side.isServer() && event.level instanceof ServerLevel level)
+            level.getCapability(ModCapabilities.DAYBREAK).ifPresent(cap -> cap.tick(level));
+    }
 }
