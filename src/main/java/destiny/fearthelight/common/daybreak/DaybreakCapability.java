@@ -46,15 +46,14 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
         double chance = Config.daybreakStartingChance;
 
         System.out.println("=================");
-        System.out.println("Mode: " + Config.daybreakMode);
+        System.out.println("Next tick");
+        System.out.println("=================");
         System.out.println("Chance: " + daybreakChance);
-        System.out.println("Additive: " + additive);
         System.out.println("Timer: " + daybreakTimer);
         System.out.println("-----------");
         System.out.println("Current day: " + currentDay);
         System.out.println("Previous day: " + previousDay);
         System.out.println("Days left: " + daybreakDaysLeft);
-        System.out.println("=================");
 
         daybreakChance = chance + (additive * currentDay);
 
@@ -94,6 +93,13 @@ public class DaybreakCapability implements INBTSerializable<CompoundTag> {
         tag.putDouble(DAYBREAK_CHANCE, daybreakChance);
         tag.putInt(DAYBREAK_TIMER, daybreakTimer);
         tag.putInt(DAYBREAK_DAYS_LEFT, daybreakDaysLeft);
+
+        System.out.println("-------------");
+        System.out.println("Serialization");
+        System.out.println("-------------");
+        System.out.println("Chance: " + daybreakChance);
+        System.out.println("Timer: " + daybreakTimer);
+        System.out.println("Days left:" + daybreakDaysLeft);
 
         return tag;
     }
