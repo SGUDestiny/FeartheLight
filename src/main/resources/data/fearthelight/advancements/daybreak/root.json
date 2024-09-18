@@ -23,10 +23,8 @@
   {
     "daybreak_start":
     {
-      "trigger": "fearthelight:daybreaK_start",
-      "conditions": {
-        "dimension": "minecraft:overworld"
-      }
+      "trigger": "fearthelight:daybreak_start",
+      "conditions": {}
     }
   },
   "requirements":

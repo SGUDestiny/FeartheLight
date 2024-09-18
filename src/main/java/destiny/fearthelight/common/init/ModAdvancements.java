@@ -6,6 +6,6 @@ import net.minecraft.advancements.CriteriaTriggers;
 public class ModAdvancements {
     public static void register()
     {
-        CriteriaTriggers.register(DaybreakStartCriterion.INSTANCE);
+        CriteriaTriggers.register(DaybreakStartCriterion.DAYBREAK_START);
     }
 }
