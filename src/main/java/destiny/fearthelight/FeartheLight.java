@@ -1,6 +1,7 @@
 package destiny.fearthelight;
 
 import com.mojang.logging.LogUtils;
+import destiny.fearthelight.common.advancements.DaybreakStartCriterion;
 import destiny.fearthelight.common.daybreak.DaybreakOverworldEffects;
 import destiny.fearthelight.common.init.ModAdvancements;
 import net.minecraft.client.Minecraft;
@@ -51,8 +52,6 @@ public class FeartheLight
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-
-        ModAdvancements.register();
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
